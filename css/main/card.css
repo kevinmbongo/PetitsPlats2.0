@@ -1,0 +1,80 @@
+.card_container {
+  gap: 3.5rem 2.5rem;
+}
+
+.card {
+  max-width: 21rem;
+  padding: 0 0 4rem;
+  border-radius: 21px;
+  background: #FFF;
+  box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+}
+
+.card-img-top {
+  object-fit: cover;
+  height: 16rem;
+  border-radius: 21px 21px 0 0;
+}
+
+.card-body {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+}
+
+.card-title {
+  color: #000;
+  font-family: Anton;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-subtitle {
+  color: var(--Grey, #7A7A7A);
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+}
+
+.card-text {
+  color: var(--Black, #1B1B1B);
+  font-family: Manrope;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.ingredient_item {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredient_item span {
+  margin: 0;
+  color: var(--Black, #1B1B1B);
+  font-size: 14px;
+  font-weight: 500;
+
+}
+
+.ingredient_item i {
+  margin: 0;
+  font-style: normal;
+  color: var(--Grey, #7A7A7A);
+  font-size: 14px;
+  font-weight: 400;
+
+}
+
+.custom-row-gap {
+  gap: 1.5rem;
+}
