@@ -1,5 +1,7 @@
 import { recipes } from "../data/recipes.js";
-import { recipeCard } from "./card.js";
+import { recipeCard } from "./templates/card.js";
+import { searchbar } from "./utils/searchbar.js";
+import { validSearch } from "./utils/validSearch.js";
 let recipeObject = {};
 recipes.forEach((recipe) => {
   recipeObject = recipe;
@@ -11,3 +13,7 @@ recipes.forEach((recipe) => {
   cardsContainer.appendChild(recipeArticles);
   card.ingredientsTest();
 });
+const submitSearch = document.getElementById("submitSearch");
+submitSearch.addEventListener("click", () => validSearch(submitSearch));
+
+searchbar();
