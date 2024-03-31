@@ -29,8 +29,13 @@
         DÉLICIEUSES
       </h1>
       <form class="d-flex position-relative form" role="search">
-        <input id="searchbarInput" class="form-control me-2 search_bar" type="search"
+       
+        <input id="searchbarInput" class="form-control me-2 search_bar " type="search"
           placeholder="Rechercher une recette, un ingrédient, ..." aria-label="Search">
+          <div id="validationServer03Feedback" class="invalid-feedback invalid-message">
+            Veuillez saisir une recherche valide.
+          </div>
+          
         <button id="submitSearch" class="btn position-absolute z-2 end-0 search_button" type="submit"> <svg
             xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
             <circle cx="10" cy="10" r="9.5" stroke="currentColor" />

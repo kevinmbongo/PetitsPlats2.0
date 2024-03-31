@@ -14,20 +14,22 @@ recipes.forEach((recipe) => {
   card.ingredientList();
 });
 
-const submitSearch = document.getElementById("submitSearch");
+// const submitSearch = document.getElementById("submitSearch");
 
-submitSearch.addEventListener("click", (event) =>{ 
-  const searchInputValue = document.getElementById("searchbarInput").value;
+const searchInput = document.getElementById("searchbarInput");
+searchInput.addEventListener("input", (event) =>{ 
+  
   
   event.preventDefault()
-  if(searchInputValue.length > 2){
-    validSearch(searchInputValue);
+  if(searchInput.value.length > 2){
+    searchInput.classList.remove("is-invalid")
+    validSearch(searchInput.value);
   }else {
-    console.error("Veuillez saisir une recherche valide.");
+    searchInput.classList.add("is-invalid"); 
     return false;
   }
   
-  searchbar(searchInputValue);
+  searchbar(searchInput.value);
 });
 
 
