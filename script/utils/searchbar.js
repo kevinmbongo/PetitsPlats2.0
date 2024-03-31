@@ -8,7 +8,7 @@ const searchInputValue = document.getElementById("searchbarInput").value;
 export function searchbar(value) {
  
   const findElement = recipes.filter((recipe) => {
-    return recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || recipe.description.toLocaleLowerCase().includes(value.toLocaleLowerCase());
+    return recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || recipe.description.toLocaleLowerCase().includes(value.toLocaleLowerCase())|| recipe.ingredients.some(c => c.ingredient.includes(value));
   });
   cardsContainer.innerHTML = ""
   recipeNumber.innerHTML = findElement.length
