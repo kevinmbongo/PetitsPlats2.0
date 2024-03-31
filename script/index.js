@@ -1,6 +1,6 @@
 import { recipes } from "../data/recipes.js";
 import { recipeCard } from "./templates/card.js";
-import { searchbar } from "./utils/searchbar.js";
+import { Searchbar } from "./utils/searchbar.js";
 import { validSearch } from "./utils/validSearch.js";
 let recipeObject = {};
 
@@ -28,8 +28,8 @@ searchInput.addEventListener("input", (event) =>{
     searchInput.classList.add("is-invalid"); 
     return false;
   }
-  
-  searchbar(searchInput.value);
+  const searchBar = new Searchbar();
+  searchBar.search(searchBar.searchInput.value)
 });
 
 

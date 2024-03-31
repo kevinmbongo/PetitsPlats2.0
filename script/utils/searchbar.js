@@ -1,34 +1,37 @@
 import { recipes } from "../../data/recipes.js";
 import { recipeCard } from "../templates/card.js";
 
-const cardsContainer = document.getElementById("cardsContainer");
-const recipeNumber = document.getElementById("recipeNumber");
-const searchInputValue = document.getElementById("searchbarInput").value;
+export class Searchbar {
+  constructor() {
+    this.cardsContainer = document.getElementById("cardsContainer");
+    this.recipeNumber = document.getElementById("recipeNumber");
+    this.searchInput = document.getElementById("searchbarInput");
+  }
 
-export function searchbar(value) {
- 
-  const findElement = recipes.filter((recipe) => {
-    return recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || recipe.description.toLocaleLowerCase().includes(value.toLocaleLowerCase());
-  });
-  cardsContainer.innerHTML = ""
-  recipeNumber.innerHTML = findElement.length
+  search(value) {
+    const findRecipe = recipes.filter((recipe) => {
+      return recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || recipe.description.toLocaleLowerCase().includes(value.toLocaleLowerCase());
+    });
 
-  if(findElement.length < 1){
-    const searchInputValue = document.getElementById("searchbarInput").value;
+    this.cardsContainer.innerHTML = "";
+    this.recipeNumber.innerHTML = findRecipe.length;
 
-    cardsContainer.innerHTML = `<div class="alert alert-danger" role="alert">
-    Aucune recette ne contient  "${searchInputValue}" vous pouvez chercher «
-    tarte aux pommes », « poisson », etc.</span>
-  </div>`;
-  };
-  
-  return  findElement.forEach((recipe) => {
-    const card = new recipeCard(recipe)       
-    const recipeArticles = card.getArticleDOM();  
-    cardsContainer.appendChild(recipeArticles);
-    card.ingredientList();
-  })
-   
-   
+    if (findRecipe.length < 1) {
+      const searchInputValue = this.searchInput.value;
+      this.cardsContainer.innerHTML = `<div class="alert alert-danger" role="alert">
+        Aucune recette ne contient "${searchInputValue}" vous pouvez chercher «
+        tarte aux pommes », « poisson », etc.</span>
+      </div>`;
+    }
+
+    for (let i = 0; i < findRecipe.length; i++) {
+      const recipe = findRecipe[i];
+      const card = new recipeCard(recipe);
+      const recipeArticles = card.getArticleDOM();
+      this.cardsContainer.appendChild(recipeArticles);
+      card.ingredientList();
+    }
+  }
 }
+
 
