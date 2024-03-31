@@ -15,10 +15,11 @@ export class recipeCard {
     article.setAttribute("class", "card col-md-4");
 
     article.innerHTML = `
-      <img src="/assets/images/Photos P7 JS Les petits plats/${this.image}" class="card-img-top" alt="image">
+    <span class="badge badge-pill badge-warning card-time">${this.time} min</span> 
+    <img src="/assets/images/Photos P7 JS Les petits plats/${this.image}" class="card-img-top" alt="image">
+     
       <div class="card-body">
         <h5 class="card-title">${this.name}</h5>
-
         <div class="recipe_container">
           <h6 class="card-subtitle mb-2 text-body-secondary">RECETTE</h6>
           <p class="card-text">${this.description}</p>
@@ -37,7 +38,7 @@ export class recipeCard {
     return article;
   }
 
-  ingredientsTest() {
+  ingredientList() {
     this.ingredients.forEach((element) => {
       const ingredient = element.ingredient;
       const quantity = element.quantity;

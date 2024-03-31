@@ -52,6 +52,23 @@
   font-weight: 400;
   line-height: normal;
 }
+.card-time {
+position: absolute;
+z-index: 1;
+right: 20px;
+top: 20px;
+padding: 5px 15px;
+color: #000;
+border-radius: 14px;
+background: var(--Yellow, #FFD15B);
+color: var(--Black, #1B1B1B);
+text-align: center;
+font-family: Manrope;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
 
 .ingredient_item {
   display: flex;
