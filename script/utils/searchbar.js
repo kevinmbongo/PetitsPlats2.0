@@ -7,13 +7,13 @@ const searchInputValue = document.getElementById("searchbarInput").value;
 
 export function searchbar(value) {
  
-  const findElement = recipes.filter((recipe) => {
+  const findRecipe = recipes.filter((recipe) => {
     return recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || recipe.description.toLocaleLowerCase().includes(value.toLocaleLowerCase())|| recipe.ingredients.some(c => c.ingredient.includes(value));
   });
   cardsContainer.innerHTML = ""
-  recipeNumber.innerHTML = findElement.length
+  recipeNumber.innerHTML = findRecipe.length
 
-  if(findElement.length < 1){
+  if(findRecipe.length < 1){
     const searchInputValue = document.getElementById("searchbarInput").value;
 
     cardsContainer.innerHTML = `<div class="alert alert-danger" role="alert">
@@ -22,11 +22,11 @@ export function searchbar(value) {
   </div>`;
   };
   
-  return  findElement.forEach((recipe) => {
+  return  findRecipe.forEach((recipe) => {
     const card = new recipeCard(recipe)       
+    card.ingredientList();
     const recipeArticles = card.getArticleDOM();  
     cardsContainer.appendChild(recipeArticles);
-    card.ingredientList();
   })
    
    
