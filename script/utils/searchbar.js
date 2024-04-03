@@ -40,8 +40,8 @@ export class Searchbar {
       const recipe = recipeFiltered[i];
       const card = new recipeCard(recipe);
       const recipeArticles = card.getArticleDOM();
-      this.cardsContainer.appendChild(recipeArticles);
       card.ingredientList();
+      this.cardsContainer.appendChild(recipeArticles);
     }
   }
 }
