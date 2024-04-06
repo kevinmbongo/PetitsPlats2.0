@@ -51,13 +51,14 @@
     <nav class="navbar">
       <ul class="nav">
         <li class="nav-item">
-          <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <div id="dropdownIngredient" class="dropdown">
+            <button  class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ingrédients
             </button>
-            <ul class="dropdown-menu">
+            <ul id="dropdownMenuIngredient" class="dropdown-menu">
               <form class="centered_flex form" role="search">
-                <input class="dropdown_search position-relative" type="search" placeholder="" aria-label="Search">
+                <input id="searchIngredient"  class="form-control  dropdown_search position-relative " type="search" aria-label="Search">
+                
                 <div class="dropdown_search_btn position-absolute z-2" type="submit"> <svg
                     xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
                     <circle cx="10" cy="10" r="9.5" stroke="currentColor" />
@@ -65,33 +66,45 @@
                   </svg>
                 </div>
               </form>
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+             
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <div class="dropdown">
+          <div id="dropdownAppliances" class="dropdown">
             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Appareils
             </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <ul id="dropdownMenuAppliances" class="dropdown-menu">
+              <form class="centered_flex form" role="search">
+                <input id="searchAppliances"  class="form-control  dropdown_search position-relative " type="search" aria-label="Search">
+                <div class="dropdown_search_btn position-absolute z-2" type="submit"> <svg
+                    xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <circle cx="10" cy="10" r="9.5" stroke="currentColor" />
+                    <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="currentColor" />
+                  </svg>
+                </div>
+              </form>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <div class="dropdown">
+          <div id="dropdownUstensils" class="dropdown">
             <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
               Ustensiles
             </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <ul id="dropdownMenuUstensiles" class="dropdown-menu">
+              
+              <form class="centered_flex form" role="search">
+                <input id="searchUstensils"  class="form-control  dropdown_search position-relative " type="search" aria-label="Search">
+                
+                <div class="dropdown_search_btn position-absolute z-2" type="submit"> <svg
+                    xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <circle cx="10" cy="10" r="9.5" stroke="currentColor" />
+                    <line x1="18.3536" y1="18.6464" x2="27.3536" y2="27.6464" stroke="currentColor" />
+                  </svg>
+                </div>
+              </form>
             </ul>
           </div>
         </li>
@@ -99,8 +112,11 @@
       </ul>
       <span id="totalRecipe" class="total-recipe"><i id="recipeNumber" class="total-recipe">1500</i> recettes</span>
     </nav>
-    <section id="cardsContainer" class="row card_container ">
+    <section id="badgeContainer" class="badge-container">
+      
+    </section>
 
+    <section id="cardsContainer" class="row card_container ">
 
     </section>
 

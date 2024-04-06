@@ -47,6 +47,9 @@ export class recipeCard {
       const ingredientContainer = document.getElementById(
         `ingredient_container${this.id}`
       );
+
+      if (!ingredientContainer) return 
+    
       ingredientContainer.innerHTML += `<div class="col-md-5 ingredient_item">
                   <span>${ingredient}</span>
                   <i>${quantity} ${unit ?? ""}</i>

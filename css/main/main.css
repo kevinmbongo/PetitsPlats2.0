@@ -43,6 +43,8 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-height: 300px;
+  overflow: scroll;
   border: none;
   margin-top: 0;
   margin-bottom: 0;
@@ -55,6 +57,8 @@ main {
   border-radius: 2px;
   border: 1px solid var(--Light-Grey, #C6C6C6);
   font-size: 1rem;
+  width: auto;
+  max-width: 180px;
 }
 
 .dropdown_search_btn {
@@ -80,6 +84,21 @@ main {
 .dropdown-item:hover {
   background: #FFD15B;
   ;
+}
+
+.badge-bg{
+  color: #000 !important;
+  background: #FFD15B;
+  max-width: 200px;
+}
+
+.badge-bg:hover{
+  font-weight:700;
+}
+
+.badge-container{
+  display: flex;
+  gap: 5px;
 }
 
 .total-recipe {

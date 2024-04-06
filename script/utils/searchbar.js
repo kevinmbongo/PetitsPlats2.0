@@ -5,14 +5,14 @@ const cardsContainer = document.getElementById("cardsContainer");
 const recipeNumber = document.getElementById("recipeNumber");
 const searchInputValue = document.getElementById("searchbarInput").value;
 
-export function searchbar(value) {
+export function searchbar(value,ArrayToFilter) {
  
-  const findRecipe = recipes.filter((recipe) => {
+  const findRecipe = ArrayToFilter.filter((recipe) => {
     return recipe.name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || recipe.description.toLocaleLowerCase().includes(value.toLocaleLowerCase())|| recipe.ingredients.some(c => c.ingredient.includes(value));
   });
   cardsContainer.innerHTML = ""
   recipeNumber.innerHTML = findRecipe.length
-
+ 
   if(findRecipe.length < 1){
     const searchInputValue = document.getElementById("searchbarInput").value;
 
