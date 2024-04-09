@@ -1,24 +1,22 @@
-import { recipes } from "../../data/recipes.js";
-import { searchbar } from "./searchbar.js";
+import { store } from "../../data/store.js";
+import { recipesFilter } from "./filters/recipesFilter.js";
 
-export function validSearch(balise) {
+export function validSearch(tag) {
   let validRegExp = /^[^<>]*$/;
 
-  if (validRegExp.test(balise))  {
-    return true;
-  } 
+  return validRegExp.test(tag);
 }
-export function validSearchField(searchField,searchList){
-  searchField.addEventListener("input", (event) =>{ 
-      event.preventDefault()
-      if(searchField.value.length > 2){
-          searchField.classList.remove("is-invalid")
-        validSearch(searchField.value);
-        
-      }else {
-          searchField.classList.add("is-invalid"); 
-        return false;
-      }
-      searchbar(searchField.value,searchList);
-    });
+
+export function validSearchField(searchField, searchList) {
+  searchField.addEventListener("input", (event) => {
+    const currentSearch = event.target.value;
+
+    currentSearch.length <= 2 || !validSearch(currentSearch)
+      ? searchField.classList.add("is-invalid")
+      : searchField.classList.remove("is-invalid");
+
+    store.addSearchValue(currentSearch);
+
+    recipesFilter();
+  });
 }
