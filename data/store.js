@@ -27,4 +27,3 @@ export const store = {
     this[category] = this[category].filter((elt) => elt !== item);
   },
 };
-console.log(store.recipesStore);

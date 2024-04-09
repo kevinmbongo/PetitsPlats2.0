@@ -1,3 +1,4 @@
+import { recipes } from "../../../data/recipes.js";
 import { store } from "../../../data/store.js";
 import { recipesFilter } from "./recipesFilter.js";
 
@@ -7,11 +8,7 @@ const FILTER_DICT = [
   "selectedUtensils",
 ];
 
-let ingredients = [];
-let utensils = [];
-let appliances = [];
-
-function createDropdownItem(item, menu, container, filterType) {
+function createDropdownItem({ item, menu, container, filterType }) {
   const li = document.createElement("li");
   li.classList.add("dropdown-item");
 
@@ -49,7 +46,10 @@ function createDropdownItem(item, menu, container, filterType) {
     closeButton.addEventListener("click", () => {
       FILTER_DICT.includes(filterType) && store.deleteFilter(filterType, item);
 
+      store.addRecipesStore(recipes);
+
       recipesFilter();
+      dropdown();
     });
 
     toastContent.appendChild(toastBody);
@@ -70,15 +70,14 @@ function createDropdownItem(item, menu, container, filterType) {
 }
 
 const dropdownMenuIngredients = document.getElementById("ingredientsMenuLi");
-
 const dropdownMenuAppliance = document.getElementById("appliancesMenuLi");
-
 const dropdownMenuUtensils = document.getElementById("utensilsMenuLi");
-
 const badgeContainer = document.getElementById("badgeContainer");
 
 export function dropdown() {
-  console.log(store.recipesStore);
+  const ingredients = [];
+  const utensils = [];
+  const appliances = [];
 
   store.recipesStore.forEach((recipe) => {
     if (!appliances.includes(recipe.appliance)) {
@@ -102,31 +101,37 @@ export function dropdown() {
     }
   });
 
+  dropdownMenuIngredients.innerHTML = "";
+
   ingredients.forEach((ingredient) => {
-    createDropdownItem(
-      ingredient,
-      dropdownMenuIngredients,
-      badgeContainer,
-      "selectedIngredients"
-    );
+    createDropdownItem({
+      item: ingredient,
+      menu: dropdownMenuIngredients,
+      container: badgeContainer,
+      filterType: "selectedIngredients",
+    });
   });
+
+  dropdownMenuAppliance.innerHTML = "";
 
   appliances.forEach((appliance) => {
-    createDropdownItem(
-      appliance,
-      dropdownMenuAppliance,
-      badgeContainer,
-      "selectedAppliances"
-    );
+    createDropdownItem({
+      item: appliance,
+      menu: dropdownMenuAppliance,
+      container: badgeContainer,
+      filterType: "selectedAppliances",
+    });
   });
 
+  dropdownMenuUtensils.innerHTML = "";
+
   utensils.forEach((ustensil) => {
-    createDropdownItem(
-      ustensil,
-      dropdownMenuUtensils,
-      badgeContainer,
-      "selectedUtensils"
-    );
+    createDropdownItem({
+      item: ustensil,
+      menu: dropdownMenuUtensils,
+      container: badgeContainer,
+      filterType: "selectedUtensils",
+    });
   });
 
   function dropDownSearchbar(searchField, list, domElement, filterType) {
@@ -138,7 +143,12 @@ export function dropdown() {
       );
 
       newList.forEach((elm) => {
-        createDropdownItem(elm, domElement, badgeContainer, filterType);
+        createDropdownItem({
+          item: elm,
+          menu: domElement,
+          container: badgeContainer,
+          filterType: filterType,
+        });
       });
     });
   }

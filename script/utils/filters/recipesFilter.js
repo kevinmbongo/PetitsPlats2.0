@@ -4,7 +4,6 @@ import { recipeCard } from "../../templates/card.js";
 
 export function recipesFilter() {
   const cardsContainer = document.getElementById("cardsContainer");
-  const searchInput = document.getElementById("searchbarInput");
   const recipeNumber = document.getElementById("recipeNumber");
 
   const searchbarValue = store.searchbarValue;
@@ -63,9 +62,7 @@ export function recipesFilter() {
   </div>`;
   }
 
-  store.recipesStore = filteredRecipes;
-
-  console.log(store.recipesStore);
+  store.addRecipesStore(filteredRecipes);
 
   store.recipesStore.forEach((recipe) => {
     const card = new recipeCard(recipe);
