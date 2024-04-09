@@ -1,4 +1,3 @@
-import { recipes } from "../../../data/recipes.js";
 import { store } from "../../../data/store.js";
 import { recipesFilter } from "./recipesFilter.js";
 
@@ -63,6 +62,7 @@ function createDropdownItem(item, menu, container, filterType) {
     FILTER_DICT.includes(filterType) && store.addFilter(filterType, item);
 
     recipesFilter();
+    dropdown();
   });
 
   li.appendChild(button);
@@ -78,7 +78,9 @@ const dropdownMenuUtensils = document.getElementById("utensilsMenuLi");
 const badgeContainer = document.getElementById("badgeContainer");
 
 export function dropdown() {
-  recipes.forEach((recipe) => {
+  console.log(store.recipesStore);
+
+  store.recipesStore.forEach((recipe) => {
     if (!appliances.includes(recipe.appliance)) {
       appliances.push(recipe.appliance);
     }

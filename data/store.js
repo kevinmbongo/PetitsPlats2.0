@@ -1,3 +1,5 @@
+import { recipes } from "./recipes.js";
+
 export const store = {
   searchbarValue: "",
 
@@ -7,8 +9,14 @@ export const store = {
 
   selectedUtensils: [],
 
+  recipesStore: recipes,
+
   addSearchValue(item) {
     this.searchbarValue = item;
+  },
+
+  addRecipesStore(item) {
+    this.recipesStore = item;
   },
 
   addFilter(category, item) {
@@ -19,3 +27,4 @@ export const store = {
     this[category] = this[category].filter((elt) => elt !== item);
   },
 };
+console.log(store.recipesStore);

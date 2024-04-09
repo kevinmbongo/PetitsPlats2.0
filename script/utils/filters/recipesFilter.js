@@ -29,17 +29,21 @@ export function recipesFilter() {
       : true;
 
     const ingredientCondition = hasIngredients
-      ? recipe.ingredients.some(({ ingredient }) =>
-          selectedIngredients.includes(ingredient)
+      ? selectedIngredients.every((ingredient) =>
+          recipe.ingredients.map((c) => c.ingredient).includes(ingredient)
         )
       : true;
 
     const applianceCondition = hasAppliances
-      ? selectedAppliances.includes(recipe.appliance)
+      ? selectedAppliances.every((appliance) =>
+          recipe.appliance.includes(appliance)
+        )
       : true;
 
     const utensilCondition = hasUtensils
-      ? recipe.ustensils.some((ustensil) => selectedUtensils.includes(ustensil))
+      ? selectedUtensils.every((ustensil) =>
+          recipe.ustensils.includes(ustensil)
+        )
       : true;
 
     return (
@@ -59,7 +63,11 @@ export function recipesFilter() {
   </div>`;
   }
 
-  filteredRecipes.forEach((recipe) => {
+  store.recipesStore = filteredRecipes;
+
+  console.log(store.recipesStore);
+
+  store.recipesStore.forEach((recipe) => {
     const card = new recipeCard(recipe);
     const recipeArticles = card.getArticleDOM();
 
@@ -67,5 +75,5 @@ export function recipesFilter() {
     card.ingredientList();
   });
 
-  recipeNumber.innerHTML = filteredRecipes.length;
+  recipeNumber.innerHTML = store.recipesStore.length;
 }
