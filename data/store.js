@@ -25,5 +25,6 @@ export const store = {
 
   deleteFilter(category, item) {
     this[category] = this[category].filter((elt) => elt !== item);
+    console.log(category, item);
   },
 };

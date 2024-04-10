@@ -47,9 +47,7 @@ function createDropdownItem({ item, menu, container, filterType }) {
       FILTER_DICT.includes(filterType) && store.deleteFilter(filterType, item);
 
       store.addRecipesStore(recipes);
-
       recipesFilter();
-      dropdown();
     });
 
     toastContent.appendChild(toastBody);
@@ -62,7 +60,6 @@ function createDropdownItem({ item, menu, container, filterType }) {
     FILTER_DICT.includes(filterType) && store.addFilter(filterType, item);
 
     recipesFilter();
-    dropdown();
   });
 
   li.appendChild(button);

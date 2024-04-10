@@ -1,6 +1,7 @@
 import { recipes } from "../../../data/recipes.js";
 import { store } from "../../../data/store.js";
 import { recipeCard } from "../../templates/card.js";
+import { dropdown } from "./dropDown.js";
 
 export function recipesFilter() {
   const cardsContainer = document.getElementById("cardsContainer");
@@ -57,7 +58,7 @@ export function recipesFilter() {
 
   if (filteredRecipes.length < 1) {
     cardsContainer.innerHTML = `<div class="alert alert-danger" role="alert">
-    Aucune recette ne contient  ces elements, vous pouvez chercher «
+    Aucune recette ne contient "${searchbarValue}", vous pouvez chercher «
     tarte aux pommes », « poisson », etc.</span>
   </div>`;
   }
@@ -70,6 +71,7 @@ export function recipesFilter() {
 
     cardsContainer.appendChild(recipeArticles);
     card.ingredientList();
+    dropdown();
   });
 
   recipeNumber.innerHTML = store.recipesStore.length;

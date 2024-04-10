@@ -16,7 +16,7 @@ export class recipeCard {
 
     article.innerHTML = `
     <span class="badge badge-pill badge-warning card-time">${this.time} min</span> 
-    <img src="/assets/images/Photos P7 JS Les petits plats/${this.image}" class="card-img-top" alt="image">
+    <img src="/assets/images/PhotosP7JSLespetitsplats/${this.image}" class="card-img-top" alt="image">
      
       <div class="card-body">
         <h5 class="card-title">${this.name}</h5>
@@ -48,8 +48,8 @@ export class recipeCard {
         `ingredient_container${this.id}`
       );
 
-      if (!ingredientContainer) return 
-    
+      if (!ingredientContainer) return;
+
       ingredientContainer.innerHTML += `<div class="col-md-5 ingredient_item">
                   <span>${ingredient}</span>
                   <i>${quantity} ${unit ?? ""}</i>

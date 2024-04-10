@@ -17,10 +17,12 @@ recipes.forEach((recipe) => {
   card.ingredientList();
 });
 
-// const submitSearch = document.getElementById("submitSearch");
-
 const searchInput = document.getElementById("searchbarInput");
+const form = document.getElementById("myForm");
 
+form.addEventListener("submit", function (event) {
+  event.preventDefault();
+});
 validSearchField(searchInput, recipes);
 
 dropdown();
