@@ -58,3 +58,9 @@ h1 {
   color: #1B1B1B;
   background: #FFD15B;
 }
+.invalid-message{
+  position: absolute;
+  bottom: -30px;
+  left: 20px;
+
+}
