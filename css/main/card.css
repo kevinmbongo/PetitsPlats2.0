@@ -6,7 +6,7 @@
   max-width: 21rem;
   padding: 0 0 4rem;
   border-radius: 21px;
-  background: #FFF;
+  background: #fff;
   box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
 }
 
@@ -21,7 +21,6 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-
 }
 
 .card-title {
@@ -34,7 +33,7 @@
 }
 
 .card-subtitle {
-  color: var(--Grey, #7A7A7A);
+  color: var(--Grey, #7a7a7a);
   font-family: Manrope;
   font-size: 12px;
   font-style: normal;
@@ -45,29 +44,31 @@
 }
 
 .card-text {
-  color: var(--Black, #1B1B1B);
+  color: var(--Black, #1b1b1b);
   font-family: Manrope;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  max-height: 95px;
+  overflow: hidden;
 }
 .card-time {
-position: absolute;
-z-index: 1;
-right: 20px;
-top: 20px;
-padding: 5px 15px;
-color: #000;
-border-radius: 14px;
-background: var(--Yellow, #FFD15B);
-color: var(--Black, #1B1B1B);
-text-align: center;
-font-family: Manrope;
-font-size: 12px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  position: absolute;
+  z-index: 1;
+  right: 20px;
+  top: 20px;
+  padding: 5px 15px;
+  color: #000;
+  border-radius: 14px;
+  background: var(--Yellow, #ffd15b);
+  color: var(--Black, #1b1b1b);
+  text-align: center;
+  font-family: Manrope;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .ingredient_item {
@@ -77,19 +78,17 @@ line-height: normal;
 
 .ingredient_item span {
   margin: 0;
-  color: var(--Black, #1B1B1B);
+  color: var(--Black, #1b1b1b);
   font-size: 14px;
   font-weight: 500;
-
 }
 
 .ingredient_item i {
   margin: 0;
   font-style: normal;
-  color: var(--Grey, #7A7A7A);
+  color: var(--Grey, #7a7a7a);
   font-size: 14px;
   font-weight: 400;
-
 }
 
 .custom-row-gap {
