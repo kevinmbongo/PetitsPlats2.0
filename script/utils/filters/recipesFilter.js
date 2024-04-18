@@ -13,7 +13,7 @@ export function recipesFilter() {
   const selectedUtensils = store.selectedUtensils;
 
   const filteredRecipes = recipes.filter((recipe) => {
-    const hasSearchbarValue = searchbarValue.length > 0;
+    const hasSearchbarValue = searchbarValue.length > 2;
     const hasIngredients = selectedIngredients.length > 0;
     const hasAppliances = selectedAppliances.length > 0;
     const hasUtensils = selectedUtensils.length > 0;
