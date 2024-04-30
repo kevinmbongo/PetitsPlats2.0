@@ -9,17 +9,23 @@ export class Searchbar {
   }
 
   search(value) {
-   
-    let recipeFiltered = []
+    let recipeFiltered = [];
 
-    for (let i =0; i < recipes.length; i++ ) {
-      if (recipes[i].name.toLocaleLowerCase().includes(value.toLocaleLowerCase()) || recipes[i].description.toLocaleLowerCase().includes(value.toLocaleLowerCase())){
-        recipeFiltered.push(recipes[i])
-      } else{
-        for (let j = 0; j < recipes[i].ingredients.length;j++){
-          if(recipes[i].ingredients[j].ingredient.includes(value)){
-            recipeFiltered.push(recipes[i])
-            break
+    for (let i = 0; i < recipes.length; i++) {
+      if (
+        recipes[i].name
+          .toLocaleLowerCase()
+          .includes(value.toLocaleLowerCase()) ||
+        recipes[i].description
+          .toLocaleLowerCase()
+          .includes(value.toLocaleLowerCase())
+      ) {
+        recipeFiltered.push(recipes[i]);
+      } else {
+        for (let j = 0; j < recipes[i].ingredients.length; j++) {
+          if (recipes[i].ingredients[j].ingredient.includes(value)) {
+            recipeFiltered.push(recipes[i]);
+            break;
           }
         }
       }
@@ -39,11 +45,10 @@ export class Searchbar {
     for (let i = 0; i < recipeFiltered.length; i++) {
       const recipe = recipeFiltered[i];
       const card = new recipeCard(recipe);
+      console.log("okok");
       const recipeArticles = card.getArticleDOM();
       card.ingredientList();
       this.cardsContainer.appendChild(recipeArticles);
     }
   }
 }
-
-

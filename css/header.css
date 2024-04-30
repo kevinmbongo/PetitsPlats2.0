@@ -20,14 +20,13 @@
 
 h1 {
   padding: 0 6rem;
-  color: #FFD15B;
+  color: #ffd15b;
   text-align: center;
   font-family: Anton;
   font-size: 44px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
-
 }
 
 .form {
@@ -51,16 +50,15 @@ h1 {
   flex-shrink: 0;
   border-radius: 10px;
   color: #ffff;
-  background: #1B1B1B;
+  background: #1b1b1b;
 }
 
 .search_button:hover {
-  color: #1B1B1B;
-  background: #FFD15B;
+  color: #1b1b1b;
+  background: #ffd15b;
 }
-.invalid-message{
+.invalid-message {
   position: absolute;
   bottom: -30px;
   left: 20px;
-
 }

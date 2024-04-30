@@ -1,7 +1,21 @@
-export function validSearch(balise) {
+import { store } from "../../data/store.js";
+import { recipesFilter } from "./filters/recipesFilters.js";
+
+export function validSearch(tag) {
   let validRegExp = /^[^<>]*$/;
 
-  if (validRegExp.test(balise))  {
-    return true;
-  } 
+  return validRegExp.test(tag);
+}
+
+export function validSearchField(searchField, searchList) {
+  searchField.addEventListener("input", (event) => {
+    const currentSearch = event.target.value;
+    currentSearch.length <= 2 || !validSearch(currentSearch)
+      ? searchField.classList.add("is-invalid")
+      : searchField.classList.remove("is-invalid");
+
+    store.addSearchValue(currentSearch);
+
+    recipesFilter();
+  });
 }
