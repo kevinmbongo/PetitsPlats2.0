@@ -13,64 +13,65 @@ export function recipesFilter() {
   const selectedAppliances = store.selectedAppliances;
   const selectedUtensils = store.selectedUtensils;
 
-  const filteredRecipes = recipes.filter((recipe) => {
-    const hasSearchbarValue = searchbarValue.length > 2;
-    const hasIngredients = selectedIngredients.length > 0;
-    const hasAppliances = selectedAppliances.length > 0;
-    const hasUtensils = selectedUtensils.length > 0;
+  const hasSearchbarValue = searchbarValue.length > 2;
+  const hasIngredients = selectedIngredients.length > 0;
+  const hasAppliances = selectedAppliances.length > 0;
+  const hasUtensils = selectedUtensils.length > 0;
 
-    const searchbarValueCondition = hasSearchbarValue
-      ? (() => {
-          const searchbarValueLower = searchbarValue.toLocaleLowerCase();
-          for (let i = 0; i < recipe.ingredients.length; i++) {
-            if (
-              recipe.name.toLocaleLowerCase().includes(searchbarValueLower) ||
-              recipe.description
-                .toLocaleLowerCase()
-                .includes(searchbarValueLower)
-            ) {
-              return true;
-            } else {
-              for (let j = 0; j < recipes[i].ingredients.length; j++) {
-                if (
-                  recipes[i].ingredients[j].ingredient.includes(
-                    searchbarValueLower
-                  )
-                ) {
-                  return true;
-                }
-              }
-            }
+  let filteredRecipes = [...recipes];
+  let filteredIngredients = [...recipes];
+
+  if (hasSearchbarValue) {
+    filteredRecipes = [];
+    for (let i = 0; i < recipes.length; i++) {
+      const searchbarValueLower = searchbarValue.toLocaleLowerCase();
+      if (
+        recipes[i].name.toLocaleLowerCase().includes(searchbarValueLower) ||
+        recipes[i].description.toLocaleLowerCase().includes(searchbarValueLower)
+      ) {
+        filteredRecipes.push(recipes[i]);
+      } else {
+        for (let j = 0; j < recipes[i].ingredients.length; j++) {
+          if (
+            recipes[i].ingredients[j].ingredient.includes(searchbarValueLower)
+          ) {
+            filteredRecipes.push(recipes[i]);
           }
-          return false;
-        })()
-      : true;
+        }
+      }
+    }
+  }
 
-    const ingredientCondition = hasIngredients
-      ? selectedIngredients.every((ingredient) =>
-          recipe.ingredients.some(
-            (recipeIngredient) => recipeIngredient.ingredient === ingredient
-          )
-        )
-      : true;
+  if (hasIngredients) {
+    filteredIngredients = [];
+    for (let i = 0; i < filteredRecipes; i++) {
+      for (let j = 0; j < filteredRecipes[i].ingredients.length; j++) {}
+    }
+    for (let k = 0; k < selectedIngredients.length; k++) {
+      if (selectedIngredients[k] == filteredRecipes[i].ingredients[j]) {
+        filteredIngredients.push(filteredRecipes[i]);
+      }
+    }
+    filteredRecipes = filteredIngredients;
+  }
 
-    const applianceCondition = hasAppliances
-      ? selectedAppliances.every((appliance) =>
-          recipe.appliance.includes(appliance)
-        )
-      : true;
+  // const ingredientCondition = hasIngredients
+  //   ? selectedIngredients.every((ingredient) =>
+  //       recipe.ingredients.some(
+  //         (recipeIngredient) => recipeIngredient.ingredient === ingredient
+  //       )
+  //     )
+  //   : true;
 
-    const utensilCondition = hasUtensils
-      ? selectedUtensils.every((utensil) => recipe.ustensils.includes(utensil))
-      : true;
+  // const applianceCondition = hasAppliances
+  //   ? selectedAppliances.every((appliance) =>
+  //       recipe.appliance.includes(appliance)
+  //     )
+  //   : true;
 
-    return (
-      searchbarValueCondition &&
-      ingredientCondition &&
-      applianceCondition &&
-      utensilCondition
-    );
-  });
+  // const utensilCondition = hasUtensils
+  //   ? selectedUtensils.every((utensil) => recipe.ustensils.includes(utensil))
+  //   : true;
 
   cardsContainer.innerHTML = "";
 
@@ -79,6 +80,7 @@ export function recipesFilter() {
     Aucune recette ne contient "${searchbarValue}", vous pouvez chercher «
     tarte aux pommes », « poisson », etc.</span>
   </div>`;
+    filteredRecipes = [...recipes];
   }
 
   store.addRecipesStore(filteredRecipes);
