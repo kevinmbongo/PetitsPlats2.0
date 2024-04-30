@@ -48,7 +48,9 @@ export function recipesFilter() {
 
     const ingredientCondition = hasIngredients
       ? selectedIngredients.every((ingredient) =>
-          recipe.ingredients.map((c) => c.ingredient).includes(ingredient)
+          recipe.ingredients.some(
+            (recipeIngredient) => recipeIngredient.ingredient === ingredient
+          )
         )
       : true;
 
@@ -59,10 +61,9 @@ export function recipesFilter() {
       : true;
 
     const utensilCondition = hasUtensils
-      ? selectedUtensils.every((ustensil) =>
-          recipe.ustensils.includes(ustensil)
-        )
+      ? selectedUtensils.every((utensil) => recipe.ustensils.includes(utensil))
       : true;
+
     return (
       searchbarValueCondition &&
       ingredientCondition &&
