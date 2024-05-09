@@ -44,7 +44,8 @@ function createDropdownItem({ item, menu, container, filterType }) {
     closeButton.setAttribute("data-bs-dismiss", "toast");
     closeButton.setAttribute("aria-label", "Close");
     closeButton.addEventListener("click", () => {
-      FILTER_DICT.includes(filterType) && store.deleteFilter(filterType, item);
+      FILTER_DICT.includes(filterType) &&
+        store.deleteFilter(filterType, item.toLocaleLowerCase());
 
       store.addRecipesStore(recipes);
       recipesFilter();
@@ -57,7 +58,8 @@ function createDropdownItem({ item, menu, container, filterType }) {
 
     container.appendChild(toastElement);
 
-    FILTER_DICT.includes(filterType) && store.addFilter(filterType, item);
+    FILTER_DICT.includes(filterType) &&
+      store.addFilter(filterType, item.toLocaleLowerCase());
 
     recipesFilter();
   });

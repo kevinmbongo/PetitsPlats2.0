@@ -4,125 +4,84 @@ import { recipeCard } from "../../templates/card.js";
 
 import { dropdown } from "./dropdown.js";
 
+function matchRecipes(recipe, searchbarValue) {
+  if (searchbarValue.length > 2) {
+    if (
+      recipe.name
+        .toLocaleLowerCase()
+        .includes(searchbarValue.toLocaleLowerCase()) ||
+      recipe.description
+        .toLocaleLowerCase()
+        .includes(searchbarValue.toLocaleLowerCase())
+    ) {
+      return true;
+    } else {
+      for (let j = 0; j < recipe.ingredients.length; j++) {
+        if (recipe.ingredients[j].ingredient.includes(searchbarValue)) {
+          return true;
+        }
+      }
+      return false;
+    }
+  }
+  return true;
+}
+
 export function recipesFilter() {
   const cardsContainer = document.getElementById("cardsContainer");
   const recipeNumber = document.getElementById("recipeNumber");
 
-  const searchbarValue = store.searchbarValue;
+  const searchbarValue = store.searchbarValue.toLowerCase();
   const selectedIngredients = store.selectedIngredients;
   const selectedAppliances = store.selectedAppliances;
   const selectedUtensils = store.selectedUtensils;
 
-  const hasSearchbarValue = searchbarValue.length > 2;
-  const hasIngredients = selectedIngredients.length > 0;
-  const hasAppliances = selectedAppliances.length > 0;
-  const hasUtensils = selectedUtensils.length > 0;
+  let filteredRecipes = [];
 
-  let filteredRecipes = [...recipes];
-
-  function some(recipe, selectedIngredient) {
-    for (let l = 0; l < recipe.ingredients.length; l++) {
-      if (recipe.ingredients[l].ingredient === selectedIngredient) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  filteredRecipes = [];
   for (let i = 0; i < recipes.length; i++) {
-    let filteredIngredients = false;
-    let filteredApliance = false;
-    let filteredUstensils = false;
-    let filteredSearchBar = false;
-
-    const searchbarValueLower = searchbarValue.toLocaleLowerCase();
-    if (
-      recipes[i].name.toLocaleLowerCase().includes(searchbarValueLower) ||
-      recipes[i].description.toLocaleLowerCase().includes(searchbarValueLower)
-    ) {
-      filteredSearchBar = true;
-    } else {
-      for (let j = 0; j < recipes[i].ingredients.length; j++) {
-        if (
-          recipes[i].ingredients[j].ingredient.includes(searchbarValueLower)
-        ) {
-          filteredSearchBar = true;
-        }
-      }
+    const recipe = recipes[i];
+    const recipeIngredients = [];
+    for (let ingredient of recipe.ingredients) {
+      recipeIngredients.push(ingredient.ingredient.toLowerCase());
     }
 
-    const ingredientCondition = hasIngredients;
-    for (let k = 0; k < selectedIngredients.length; k++) {
-      if (!some(recipes[i], selectedIngredients[k])) {
-        filteredIngredients = false;
-        break;
-      } else {
-        filteredIngredients = true;
-      }
-    }
-    if (filteredIngredients) {
-      filteredRecipes.push(recipes[i]);
+    const recipeAppliance = recipe.appliance.toLowerCase();
+
+    const recipeUtensils = [];
+    for (let utensil of recipe.ustensils) {
+      recipeUtensils.push(utensil.toLowerCase());
     }
 
-    const applianceCondition = hasAppliances;
-    for (let m = 0; m < selectedAppliances.length; m++) {
-      if (recipes[i].appliance === selectedAppliances[m]) {
-        filteredApliance = false;
-        break;
-      } else {
-        filteredApliance = true;
-      }
-    }
+    const hasSearchbarValue = matchRecipes(recipe, searchbarValue);
 
-    if (filteredApliance) {
-      filteredRecipes.push(recipes[i]);
-    }
+    const hasIngredients =
+      selectedIngredients.length === 0 ||
+      selectedIngredients.every((selectedIngredient) =>
+        recipeIngredients.includes(selectedIngredient.toLowerCase())
+      );
 
-    const utensilCondition = hasUtensils;
-    for (let n = 0; n < selectedUtensils.length; n++) {
-      for (let o = 0; o < recipes[i].ustensils.length; o++) {
-        if (recipes[i].ustensils[o] === selectedUtensils[n]) {
-          console.log(recipes[i].ustensils[o]);
-          filteredUstensils = false;
-          break;
-        } else {
-          filteredUstensils = true;
-        }
-      }
-    }
+    const hasAppliances =
+      selectedAppliances.length === 0 ||
+      selectedAppliances.includes(recipeAppliance);
 
-    if (filteredUstensils) {
-      filteredRecipes.push(recipes[i]);
+    const hasUtensils =
+      selectedUtensils.length === 0 ||
+      selectedUtensils.every((selectedUtensil) =>
+        recipeUtensils.includes(selectedUtensil.toLowerCase())
+      );
+
+    if (hasSearchbarValue && hasIngredients && hasAppliances && hasUtensils) {
+      filteredRecipes.push(recipe);
     }
   }
-
-  // const ingredientCondition = hasIngredients
-  //   ? selectedIngredients.every((ingredient) =>
-  //       recipe.ingredients.some(
-  //         (recipeIngredient) => recipeIngredient.ingredient === ingredient
-  //       )
-  //     )
-  //   : true;
-
-  // const applianceCondition = hasAppliances
-  //   ? selectedAppliances.every((appliance) =>
-  //       recipe.appliance.includes(appliance)
-  //     )
-  //   : true;
-
-  // const utensilCondition = hasUtensils
-  //   ? selectedUtensils.every((utensil) => recipe.ustensils.includes(utensil))
-  //   : true;
 
   cardsContainer.innerHTML = "";
 
   if (filteredRecipes.length < 1) {
     cardsContainer.innerHTML = `<div class="alert alert-danger" role="alert">
-    Aucune recette ne contient "${searchbarValue}", vous pouvez chercher «
+    Aucune recette ne contient "${searchbarValue} ${selectedIngredients} ${selectedAppliances} ${selectedUtensils}", vous pouvez chercher «
     tarte aux pommes », « poisson », etc.</span>
   </div>`;
-    filteredRecipes = [...recipes];
   }
 
   store.addRecipesStore(filteredRecipes);
