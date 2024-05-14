@@ -156,22 +156,22 @@ export function dropdown() {
   const searchAppliances = document.getElementById("searchAppliances");
   const searchUtensils = document.getElementById("searchUtensils");
 
-  dropDownSearchbar(
-    searchIngredient,
-    ingredients,
-    dropdownMenuIngredients,
-    "selectedIngredients"
-  );
-  dropDownSearchbar(
-    searchAppliances,
-    appliances,
-    dropdownMenuAppliance,
-    "selectedAppliances"
-  );
-  dropDownSearchbar(
-    searchUtensils,
-    utensils,
-    dropdownMenuUtensils,
-    "selectedUtensils"
-  );
+  dropDownSearchbar({
+    searchField: searchIngredient,
+    list: ingredients,
+    domElement: dropdownMenuIngredients,
+    filterType: "selectedIngredients",
+  });
+  dropDownSearchbar({
+    searchField: searchAppliances,
+    list: appliances,
+    domElement: dropdownMenuAppliance,
+    filterType: "selectedAppliances",
+  });
+  dropDownSearchbar({
+    searchField: searchUtensils,
+    list: utensils,
+    domElement: dropdownMenuUtensils,
+    filterType: "selectedUtensils",
+  });
 }
